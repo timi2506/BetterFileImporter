@@ -73,7 +73,7 @@ public struct FileImporterRepresentableView: UIViewControllerRepresentable {
 	}
 	
 	public func makeUIViewController(context: Context) -> UIDocumentPickerViewController {
-		let picker = UIDocumentPickerViewController(forOpeningContentTypes: allowedContentTypes, asCopy: true)
+		let picker = UIDocumentPickerViewController(forOpeningContentTypes: allowedContentTypes, asCopy: allowedContentTypes.contains(.folder) ? false : true)
 		picker.delegate = context.coordinator
 		picker.allowsMultipleSelection = allowsMultipleSelection
 		return picker
