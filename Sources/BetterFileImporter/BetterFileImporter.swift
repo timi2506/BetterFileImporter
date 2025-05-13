@@ -9,21 +9,39 @@ public struct BetterFileImporter: ViewModifier {
     @Binding var isPresented: Bool
     @State var allowedContentTypes: [UTType]
     @State var allowsMultipleSelection: Bool?
+    @State var presentationType: BetterFileImporterPresentationType?
     @State var onDocumentsPicked: ([URL]) -> Void
-
     public func body(content: Content) -> some View {
-        content
-            .fullScreenCover(isPresented: $isPresented) {
-                FileImporterRepresentableView(allowedContentTypes: allowedContentTypes, allowsMultipleSelection: allowsMultipleSelection ?? false, onDocumentsPicked: onDocumentsPicked)
-            }
+        switch presentationType {
+        case .sheet:
+            content
+                .sheet(isPresented: $isPresented) {
+                    FileImporterRepresentableView(allowedContentTypes: allowedContentTypes, allowsMultipleSelection: allowsMultipleSelection ?? false, onDocumentsPicked: onDocumentsPicked)
+                }
+        case .fullscreen:
+            content
+                .fullScreenCover(isPresented: $isPresented) {
+                    FileImporterRepresentableView(allowedContentTypes: allowedContentTypes, allowsMultipleSelection: allowsMultipleSelection ?? false, onDocumentsPicked: onDocumentsPicked)
+                }
+        case nil:
+            content
+                .sheet(isPresented: $isPresented) {
+                    FileImporterRepresentableView(allowedContentTypes: allowedContentTypes, allowsMultipleSelection: allowsMultipleSelection ?? false, onDocumentsPicked: onDocumentsPicked)
+                }
+        }
+        
     }
 }
 extension View {
-    public func betterFileImporter(isPresented: Binding<Bool>, allowedContentTypes: [UTType], allowsMultipleSelection: Bool? = nil, onDocumentsPicked: @escaping ([URL]) -> Void) -> some View {
-        modifier(BetterFileImporter(isPresented: .constant(true), allowedContentTypes: [.data], onDocumentsPicked: onDocumentsPicked))
+    public func betterFileImporter(isPresented: Binding<Bool>, allowedContentTypes: [UTType], allowsMultipleSelection: Bool? = nil, presentationType: BetterFileImporterPresentationType? = nil, onDocumentsPicked: @escaping ([URL]) -> Void) -> some View {
+        modifier(BetterFileImporter(isPresented: .constant(true), allowedContentTypes: [.data], presentationType: presentationType, onDocumentsPicked: onDocumentsPicked))
     }
 }
 
+public enum BetterFileImporterPresentationType {
+    case sheet
+    case fullscreen
+}
 
 //
 //  Originally: UIKitFileImporter.swift
