@@ -55,12 +55,12 @@ import UniformTypeIdentifiers
 
 public struct FileImporterRepresentableView: UIViewControllerRepresentable {
 	public var allowedContentTypes: [UTType]
-	public var allowsMultipleSelection: Bool = false
+	public var allowsMultipleSelection: Bool
 	public var onDocumentsPicked: ([URL]) -> Void
 	
 	public init(
 		allowedContentTypes: [UTType],
-		allowsMultipleSelection: Bool = false,
+		allowsMultipleSelection: Bool,
 		onDocumentsPicked: @escaping ([URL]) -> Void
 	) {
 		self.allowedContentTypes = allowedContentTypes
