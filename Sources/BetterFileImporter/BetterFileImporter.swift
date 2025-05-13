@@ -34,7 +34,7 @@ public struct BetterFileImporter: ViewModifier {
 }
 extension View {
     public func betterFileImporter(isPresented: Binding<Bool>, allowedContentTypes: [UTType], allowsMultipleSelection: Bool? = nil, presentationType: BetterFileImporterPresentationType? = nil, onDocumentsPicked: @escaping ([URL]) -> Void) -> some View {
-        modifier(BetterFileImporter(isPresented: isPresented, allowedContentTypes: [.data], presentationType: presentationType, onDocumentsPicked: onDocumentsPicked))
+        modifier(BetterFileImporter(isPresented: isPresented, allowedContentTypes: allowedContentTypes, presentationType: presentationType, onDocumentsPicked: onDocumentsPicked))
     }
 }
 
