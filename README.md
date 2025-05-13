@@ -1,7 +1,12 @@
 # BetterFileImporter
 
 ## What does this Package do?
-Simple! It adds a new View Modifier, VERY SIMILAR to .fileImporter, that allows picking files, the cool part: It works even on Enterprise Certs like those provided by [WSF](https://wsfteam.xyz) and has a very simple System of providing the picked files - an Array of URLS! thats it! no more result.get() or similar to get the selected File URL's!
+Simple! It adds a new view modifier, very similar to .fileImporter, that lets you pick files.
+The cool part? It even works with enterprise certificates, like the ones from [WSF](https://wsfteam.xyz).
+
+And it keeps things super straightforward:
+You get an array of URLs. That’s it.
+No more result.get() nonsense just to access your files!
 
 ## Installation
 ### Using Xcode's built-in Package Manager 
