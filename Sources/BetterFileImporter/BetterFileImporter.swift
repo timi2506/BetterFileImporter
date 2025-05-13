@@ -89,15 +89,11 @@ public struct FileImporterRepresentableView: UIViewControllerRepresentable {
         }
         
         public func documentPicker(_ controller: UIDocumentPickerViewController, didPickDocumentsAt urls: [URL]) {
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.25) {
                 self.onDocumentsPicked(urls)
-            }
         }
         
         public func documentPickerWasCancelled(_ controller: UIDocumentPickerViewController) {
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.25) {
                 self.onDocumentsPicked([])
-            }
         }
         
     }
